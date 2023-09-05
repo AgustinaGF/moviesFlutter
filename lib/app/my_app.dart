@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/presentation/modules/splash/views/splash_view.dart';
+import 'package:movies_flutter/app/presentation/routes/app_routes.dart';
+import 'package:movies_flutter/app/presentation/routes/routes.dart';
 
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
@@ -6,7 +9,8 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
+      initialRoute: Routes.splash,
+      routes: appRoutes,
     );
   }
 }
