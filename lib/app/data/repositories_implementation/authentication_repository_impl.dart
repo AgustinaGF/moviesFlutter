@@ -3,14 +3,12 @@ import 'package:movies_flutter/app/domain/repositories/authentication_repository
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
-  Future<User> getUserData() {
-    return Future.value(
-      User(),
-    );
+  Future<User?> getUserData() {
+    return Future.value(null);
   }
 
   @override
-  Future<bool> get isSignedInl {
+  Future<bool> get isSignedIn {
     return Future.value(true);
   }
 }

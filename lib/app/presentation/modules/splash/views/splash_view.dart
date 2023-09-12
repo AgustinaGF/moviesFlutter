@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/presentation/routes/routes.dart';
 import 'package:movies_flutter/main.dart';
 
 class SplashView extends StatefulWidget {
@@ -12,7 +13,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPersistentFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         _init();
       },
@@ -26,9 +27,27 @@ class _SplashViewState extends State<SplashView> {
 
     if (hasInternet) {
       final authenticationRepository = injector.authenticationRepository;
-      final isSigned = await authenticationRepository.isSignedInl;
-      if (isSigned) {}
-    } else {}
+      final isSignedIn = await authenticationRepository.isSignedIn;
+      if (isSignedIn) {
+        final user = await authenticationRepository.getUserData();
+        if (mounted) {
+          if (user != null) {
+            print(user);
+            _goTo(Routes.home);
+          } else {
+            _goTo(Routes.signIn);
+          }
+        }
+      } else if (mounted) {
+        _goTo(Routes.signIn);
+      }
+    } else {
+      _goTo(Routes.offline);
+    }
+  }
+
+  void _goTo(String routeName) {
+    Navigator.pushReplacementNamed(context, routeName);
   }
 
   @override
