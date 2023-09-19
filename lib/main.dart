@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:movies_flutter/app/data/repositories_implementation/authentication_repository_impl.dart';
 import 'package:movies_flutter/app/data/repositories_implementation/connectivity_repository_imp.dart';
 import 'package:movies_flutter/app/data/services/remote/internet_checker.dart';
@@ -14,7 +15,8 @@ void main() {
         Connectivity(),
         InternetChecker(),
       ),
-      authenticationRepository: AuthenticationRepositoryImpl(),
+      authenticationRepository:
+          AuthenticationRepositoryImpl(const FlutterSecureStorage()),
       child: const Myapp(),
     ),
   );
