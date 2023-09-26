@@ -1,10 +1,18 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:movies_flutter/app/domain/either.dart';
 
 class Http {
-  Http(this._client, this._baseUrl, this._apiKey);
+  Http({
+    required Client client,
+    required String baseurl,
+    required String apiKey,
+  })  : _client = client,
+        _apiKey = apiKey,
+        _baseUrl = baseurl;
+
   final Client _client;
   final String _baseUrl;
   final String _apiKey;
@@ -14,6 +22,7 @@ class Http {
     HttpMethod method = HttpMethod.get,
     Map<String, String> headers = const {},
     Map<String, String> queryParameters = const {},
+    Map<String, dynamic> body = const {},
     bool useApiKey = true,
   }) async {
     try {
@@ -33,6 +42,7 @@ class Http {
         ...headers,
       };
       late final Response response;
+      final bodyString = jsonEncode(body);
       switch (method) {
         case HttpMethod.get:
           response = await _client.get(url);
@@ -40,13 +50,26 @@ class Http {
           response = await _client.post(
             url,
             headers: headers,
+            body: bodyString,
           );
         case HttpMethod.patch:
-          response = await _client.patch(url, headers: headers);
+          response = await _client.patch(
+            url,
+            headers: headers,
+            body: bodyString,
+          );
         case HttpMethod.delete:
-          response = await _client.delete(url, headers: headers);
+          response = await _client.delete(
+            url,
+            headers: headers,
+            body: bodyString,
+          );
         case HttpMethod.put:
-          response = await _client.put(url, headers: headers);
+          response = await _client.put(
+            url,
+            headers: headers,
+            body: bodyString,
+          );
           break;
       }
       final statusCode = response.statusCode;
