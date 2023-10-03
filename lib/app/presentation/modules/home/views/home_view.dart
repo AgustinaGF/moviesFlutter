@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/presentation/routes/routes.dart';
-import 'package:movies_flutter/main.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -11,7 +12,10 @@ class HomeView extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () async {
-            Injector.of(context).authenticationRepository.signOut();
+            Provider.of<AuthenticationRepository>(
+              context,
+              listen: false,
+            ).signOut();
 
             Navigator.pushReplacementNamed(
               context,

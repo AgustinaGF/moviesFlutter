@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:movies_flutter/app/data/http/http.dart';
 import 'package:movies_flutter/app/domain/either.dart';
 import 'package:movies_flutter/app/domain/repositories/enums.dart';
@@ -31,9 +29,7 @@ class AuthenticationAPI {
     final result = await _http.request(
       '/authentication/token/new',
       onSuccess: (responseBody) {
-        final json = Map<String, dynamic>.from(
-          jsonDecode(responseBody),
-        );
+        final json = responseBody as Map;
         return json['request_token'] as String;
       },
     );
@@ -59,9 +55,7 @@ class AuthenticationAPI {
         "request_token": requestToken,
       },
       onSuccess: (responseBody) {
-        final json = Map<String, dynamic>.from(
-          jsonDecode(responseBody),
-        );
+        final json = responseBody as Map;
         return json['request_token'] as String;
       },
     );
@@ -82,9 +76,7 @@ class AuthenticationAPI {
         'request_token': requestToken,
       },
       onSuccess: (responseBody) {
-        final json = Map<String, dynamic>.from(
-          jsonDecode(responseBody),
-        );
+        final json = responseBody as Map;
         return json['session_id'] as String;
       },
     );

@@ -10,45 +10,28 @@ import 'package:movies_flutter/app/data/services/remote/internet_checker.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/connectivity_repository.dart';
 import 'package:movies_flutter/app/my_app.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    Injector(
-      connectivityRepository: ConnectivityRepositoryImp(
+    Provider<ConnectivityRepository>(
+      create: (context) => ConnectivityRepositoryImp(
         Connectivity(),
         InternetChecker(),
       ),
-      authenticationRepository: AuthenticationRepositoryImpl(
-        const FlutterSecureStorage(),
-        AuthenticationAPI(
-          Http(
-            client: http.Client(),
-            baseurl: 'https://api.themoviedb.org/3',
-            apiKey: '4248991ee7e5702debde74e854effa57',
+      child: Provider<AuthenticationRepository>(
+        create: (context) => AuthenticationRepositoryImpl(
+          const FlutterSecureStorage(),
+          AuthenticationAPI(
+            Http(
+              client: http.Client(),
+              baseurl: 'https://api.themoviedb.org/3',
+              apiKey: '4248991ee7e5702debde74e854effa57',
+            ),
           ),
         ),
+        child: const Myapp(),
       ),
-      child: const Myapp(),
     ),
   );
-}
-
-class Injector extends InheritedWidget {
-  const Injector({
-    super.key,
-    required super.child,
-    required this.connectivityRepository,
-    required this.authenticationRepository,
-  });
-
-  final ConnectivityRepository connectivityRepository;
-  final AuthenticationRepository authenticationRepository;
-
-  @override
-  bool updateShouldNotify(_) => false;
-  static Injector of(BuildContext context) {
-    final injector = context.dependOnInheritedWidgetOfExactType<Injector>();
-    assert(injector != null, 'Injector could not be found');
-    return injector!;
-  }
 }
