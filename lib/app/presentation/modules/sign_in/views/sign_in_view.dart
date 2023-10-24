@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
-import 'package:movies_flutter/app/domain/repositories/enums.dart';
 import 'package:movies_flutter/app/presentation/modules/sign_in/controller/sign_in_controller.dart';
-import 'package:movies_flutter/app/presentation/routes/routes.dart';
+import 'package:movies_flutter/app/presentation/modules/sign_in/views/widgets/submit_button.dart';
 import 'package:provider/provider.dart';
 
-class SignInView extends StatefulWidget {
+class SignInView extends StatelessWidget {
   const SignInView({super.key});
-
-  @override
-  State<SignInView> createState() => _SignInViewState();
-}
-
-class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignInController>(
@@ -63,18 +55,7 @@ class _SignInViewState extends State<SignInView> {
                       SizedBox(
                         height: 20,
                       ),
-                      if (controller.fetching)
-                        const CircularProgressIndicator()
-                      else
-                        MaterialButton(
-                            onPressed: () {
-                              final isValid = Form.of(context).validate();
-                              if (isValid) {
-                                _submit(context);
-                              }
-                            },
-                            color: Colors.blue,
-                            child: Text('Sign in'))
+                      const SubmitButton(),
                     ],
                   ),
                 );
@@ -83,38 +64,6 @@ class _SignInViewState extends State<SignInView> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<void> _submit(BuildContext context) async {
-    final SignInController controller = context.read();
-
-    controller.onFetchingChanged(true);
-
-    final result = await context
-        .read<AuthenticationRepository>()
-        .signIn(controller.username, controller.password);
-
-    if (!mounted) {
-      return;
-    }
-
-    result.when(
-      (failure) {
-        controller.onFetchingChanged(false);
-        final message = {
-          SignInFailure.notFound: 'Not Found',
-          SignInFailure.unauthorized: 'Invalid password',
-          SignInFailure.unknown: 'Error',
-          SignInFailure.network: 'Network error'
-        }[failure];
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message!)),
-        );
-      },
-      (user) {
-        Navigator.pushReplacementNamed(context, Routes.home);
-      },
     );
   }
 }
