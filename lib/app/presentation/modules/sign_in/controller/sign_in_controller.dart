@@ -1,9 +1,14 @@
+import 'package:movies_flutter/app/domain/either.dart';
+import 'package:movies_flutter/app/domain/models/user.dart';
+import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
+import 'package:movies_flutter/app/domain/repositories/enums.dart';
 import 'package:movies_flutter/app/presentation/global/state_notifier.dart';
 import 'package:movies_flutter/app/presentation/modules/sign_in/controller/sign_in_state.dart';
 
 class SignInController extends StateNotifier<SignInState> {
-  SignInController(super.state);
+  SignInController(super.state, {required this.authenticationRepository});
 
+  final AuthenticationRepository authenticationRepository;
   void onUsernameChanged(String text) {
     onlyUpdate(
       state.copyWith(
@@ -18,7 +23,14 @@ class SignInController extends StateNotifier<SignInState> {
     ));
   }
 
-  void onFetchingChanged(bool value) {
-    state = state.copyWith(fetching: value);
+  Future<Either<SignInFailure, User>> submit() async {
+    state = state.copyWith(fetching: true);
+    final result =
+        await authenticationRepository.signIn(state.username, state.password);
+    result.when(
+      (_) => state = state.copyWith(fetching: false),
+      (_) => null,
+    );
+    return result;
   }
 }

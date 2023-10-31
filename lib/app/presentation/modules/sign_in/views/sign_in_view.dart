@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/presentation/modules/sign_in/controller/sign_in_controller.dart';
 import 'package:movies_flutter/app/presentation/modules/sign_in/controller/sign_in_state.dart';
 import 'package:movies_flutter/app/presentation/modules/sign_in/views/widgets/submit_button.dart';
@@ -11,6 +12,7 @@ class SignInView extends StatelessWidget {
     return ChangeNotifierProvider<SignInController>(
       create: (_) => SignInController(
         SignInState(),
+        authenticationRepository: context.read<AuthenticationRepository>(),
       ),
       child: Scaffold(
         body: SafeArea(
