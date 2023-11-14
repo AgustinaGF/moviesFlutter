@@ -14,6 +14,7 @@ import 'package:movies_flutter/app/domain/repositories/account_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/connectivity_repository.dart';
 import 'package:movies_flutter/app/my_app.dart';
+import 'package:movies_flutter/app/presentation/global/controllers/session_controller.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -47,6 +48,9 @@ void main() {
             accountAPI,
           ),
         ),
+        ChangeNotifierProvider<SessionController>(
+            create: (context) =>
+                SessionController(authenticationRepository: context.read()))
       ],
       child: const Myapp(),
     ),
