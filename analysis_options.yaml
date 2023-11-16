@@ -22,7 +22,7 @@ linter:
   # producing the lint.
   rules:
     prefer_relative_imports:true
-    sort_constructor_firts:true
+    sort_constructor_firts:false
     sort_unnamed_constructors_firts:true
     prefer_single_quotes:true
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
