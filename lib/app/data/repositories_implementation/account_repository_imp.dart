@@ -1,5 +1,5 @@
 import 'package:movies_flutter/app/data/services/remote/acount_api.dart';
-import 'package:movies_flutter/app/domain/models/user.dart';
+import 'package:movies_flutter/app/domain/models/user/user.dart';
 import 'package:movies_flutter/app/domain/repositories/account_repository.dart';
 
 import '../services/local/session_service.dart';

@@ -20,6 +20,9 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if (user.avatarPath != null)
+              Image.network(
+                  'https://image.tmdb.org/t/p/w500${user.avatarPath}'),
             Text(
               user.username,
               style: TextStyle(

@@ -5,10 +5,12 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User extends Equatable {
-  User({required this.id, required this.username});
+  User({required this.id, required this.username, required this.avatarPath});
 
   final int id;
   final String username;
+  @JsonKey(name: 'avatar', fromJson: avatarPathFromJson)
+  final String? avatarPath;
 
   @override
   // TODO: implement props
@@ -20,4 +22,8 @@ class User extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+String? avatarPathFromJson(Map<String, dynamic> json) {
+  return json['tmdb']?['avatar_path'] as String?;
 }
