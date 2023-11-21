@@ -1,6 +1,6 @@
 import 'package:movies_flutter/app/data/http/http.dart';
 import 'package:movies_flutter/app/domain/either.dart';
-import 'package:movies_flutter/app/domain/failures/sign_in_failure.dart';
+import 'package:movies_flutter/app/domain/failures/sign_in/sign_in_failure.dart';
 
 class AuthenticationAPI {
   AuthenticationAPI(this._http);

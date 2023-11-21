@@ -5,7 +5,7 @@ import 'package:movies_flutter/app/domain/either.dart';
 import 'package:movies_flutter/app/domain/models/user/user.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 
-import '../../domain/failures/sign_in_failure.dart';
+import '../../domain/failures/sign_in/sign_in_failure.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   AuthenticationRepositoryImpl(
