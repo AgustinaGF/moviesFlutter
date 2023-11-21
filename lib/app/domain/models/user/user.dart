@@ -5,6 +5,7 @@ part 'user.g.dart';
 
 @freezed
 class User with _$User {
+  const User._();
   const factory User(
       {required int id,
       required String username,
@@ -12,9 +13,11 @@ class User with _$User {
         name: 'avatar',
         fromJson: avatarPathFromJson,
       )
-      required String? avatarPath}) = _User;
+      String? avatarPath}) = _User;
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  String getFormatted() {
+    return '$username $id';
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

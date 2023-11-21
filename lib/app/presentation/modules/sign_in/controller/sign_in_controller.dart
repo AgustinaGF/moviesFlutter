@@ -3,7 +3,7 @@ import 'package:movies_flutter/app/domain/models/user/user.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/enums.dart';
 import 'package:movies_flutter/app/presentation/global/state_notifier.dart';
-import 'package:movies_flutter/app/presentation/modules/sign_in/controller/sign_in_state.dart';
+import 'package:movies_flutter/app/presentation/modules/sign_in/controller/state/sign_in_state.dart';
 
 class SignInController extends StateNotifier<SignInState> {
   SignInController(super.state, {required this.authenticationRepository});
