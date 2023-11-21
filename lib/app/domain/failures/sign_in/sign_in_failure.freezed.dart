@@ -43,26 +43,26 @@ mixin _$SignInFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotFound value) notFound,
-    required TResult Function(Network value) network,
-    required TResult Function(Unauthorized value) unathorized,
-    required TResult Function(Unknown value) unknow,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Network value) network,
+    required TResult Function(_Unauthorized value) unathorized,
+    required TResult Function(_Unknown value) unknow,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotFound value)? notFound,
-    TResult? Function(Network value)? network,
-    TResult? Function(Unauthorized value)? unathorized,
-    TResult? Function(Unknown value)? unknow,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Network value)? network,
+    TResult? Function(_Unauthorized value)? unathorized,
+    TResult? Function(_Unknown value)? unknow,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotFound value)? notFound,
-    TResult Function(Network value)? network,
-    TResult Function(Unauthorized value)? unathorized,
-    TResult Function(Unknown value)? unknow,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Network value)? network,
+    TResult Function(_Unauthorized value)? unathorized,
+    TResult Function(_Unknown value)? unknow,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -104,7 +104,7 @@ class __$$NotFoundImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NotFoundImpl implements NotFound {
+class _$NotFoundImpl implements _NotFound {
   _$NotFoundImpl();
 
   @override
@@ -161,10 +161,10 @@ class _$NotFoundImpl implements NotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotFound value) notFound,
-    required TResult Function(Network value) network,
-    required TResult Function(Unauthorized value) unathorized,
-    required TResult Function(Unknown value) unknow,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Network value) network,
+    required TResult Function(_Unauthorized value) unathorized,
+    required TResult Function(_Unknown value) unknow,
   }) {
     return notFound(this);
   }
@@ -172,10 +172,10 @@ class _$NotFoundImpl implements NotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotFound value)? notFound,
-    TResult? Function(Network value)? network,
-    TResult? Function(Unauthorized value)? unathorized,
-    TResult? Function(Unknown value)? unknow,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Network value)? network,
+    TResult? Function(_Unauthorized value)? unathorized,
+    TResult? Function(_Unknown value)? unknow,
   }) {
     return notFound?.call(this);
   }
@@ -183,10 +183,10 @@ class _$NotFoundImpl implements NotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotFound value)? notFound,
-    TResult Function(Network value)? network,
-    TResult Function(Unauthorized value)? unathorized,
-    TResult Function(Unknown value)? unknow,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Network value)? network,
+    TResult Function(_Unauthorized value)? unathorized,
+    TResult Function(_Unknown value)? unknow,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -196,8 +196,8 @@ class _$NotFoundImpl implements NotFound {
   }
 }
 
-abstract class NotFound implements SignInFailure {
-  factory NotFound() = _$NotFoundImpl;
+abstract class _NotFound implements SignInFailure {
+  factory _NotFound() = _$NotFoundImpl;
 }
 
 /// @nodoc
@@ -218,7 +218,7 @@ class __$$NetworkImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NetworkImpl implements Network {
+class _$NetworkImpl implements _Network {
   _$NetworkImpl();
 
   @override
@@ -275,10 +275,10 @@ class _$NetworkImpl implements Network {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotFound value) notFound,
-    required TResult Function(Network value) network,
-    required TResult Function(Unauthorized value) unathorized,
-    required TResult Function(Unknown value) unknow,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Network value) network,
+    required TResult Function(_Unauthorized value) unathorized,
+    required TResult Function(_Unknown value) unknow,
   }) {
     return network(this);
   }
@@ -286,10 +286,10 @@ class _$NetworkImpl implements Network {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotFound value)? notFound,
-    TResult? Function(Network value)? network,
-    TResult? Function(Unauthorized value)? unathorized,
-    TResult? Function(Unknown value)? unknow,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Network value)? network,
+    TResult? Function(_Unauthorized value)? unathorized,
+    TResult? Function(_Unknown value)? unknow,
   }) {
     return network?.call(this);
   }
@@ -297,10 +297,10 @@ class _$NetworkImpl implements Network {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotFound value)? notFound,
-    TResult Function(Network value)? network,
-    TResult Function(Unauthorized value)? unathorized,
-    TResult Function(Unknown value)? unknow,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Network value)? network,
+    TResult Function(_Unauthorized value)? unathorized,
+    TResult Function(_Unknown value)? unknow,
     required TResult orElse(),
   }) {
     if (network != null) {
@@ -310,8 +310,8 @@ class _$NetworkImpl implements Network {
   }
 }
 
-abstract class Network implements SignInFailure {
-  factory Network() = _$NetworkImpl;
+abstract class _Network implements SignInFailure {
+  factory _Network() = _$NetworkImpl;
 }
 
 /// @nodoc
@@ -332,7 +332,7 @@ class __$$UnauthorizedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnauthorizedImpl implements Unauthorized {
+class _$UnauthorizedImpl implements _Unauthorized {
   _$UnauthorizedImpl();
 
   @override
@@ -389,10 +389,10 @@ class _$UnauthorizedImpl implements Unauthorized {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotFound value) notFound,
-    required TResult Function(Network value) network,
-    required TResult Function(Unauthorized value) unathorized,
-    required TResult Function(Unknown value) unknow,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Network value) network,
+    required TResult Function(_Unauthorized value) unathorized,
+    required TResult Function(_Unknown value) unknow,
   }) {
     return unathorized(this);
   }
@@ -400,10 +400,10 @@ class _$UnauthorizedImpl implements Unauthorized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotFound value)? notFound,
-    TResult? Function(Network value)? network,
-    TResult? Function(Unauthorized value)? unathorized,
-    TResult? Function(Unknown value)? unknow,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Network value)? network,
+    TResult? Function(_Unauthorized value)? unathorized,
+    TResult? Function(_Unknown value)? unknow,
   }) {
     return unathorized?.call(this);
   }
@@ -411,10 +411,10 @@ class _$UnauthorizedImpl implements Unauthorized {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotFound value)? notFound,
-    TResult Function(Network value)? network,
-    TResult Function(Unauthorized value)? unathorized,
-    TResult Function(Unknown value)? unknow,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Network value)? network,
+    TResult Function(_Unauthorized value)? unathorized,
+    TResult Function(_Unknown value)? unknow,
     required TResult orElse(),
   }) {
     if (unathorized != null) {
@@ -424,8 +424,8 @@ class _$UnauthorizedImpl implements Unauthorized {
   }
 }
 
-abstract class Unauthorized implements SignInFailure {
-  factory Unauthorized() = _$UnauthorizedImpl;
+abstract class _Unauthorized implements SignInFailure {
+  factory _Unauthorized() = _$UnauthorizedImpl;
 }
 
 /// @nodoc
@@ -446,7 +446,7 @@ class __$$UnknownImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnknownImpl implements Unknown {
+class _$UnknownImpl implements _Unknown {
   _$UnknownImpl();
 
   @override
@@ -503,10 +503,10 @@ class _$UnknownImpl implements Unknown {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotFound value) notFound,
-    required TResult Function(Network value) network,
-    required TResult Function(Unauthorized value) unathorized,
-    required TResult Function(Unknown value) unknow,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Network value) network,
+    required TResult Function(_Unauthorized value) unathorized,
+    required TResult Function(_Unknown value) unknow,
   }) {
     return unknow(this);
   }
@@ -514,10 +514,10 @@ class _$UnknownImpl implements Unknown {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotFound value)? notFound,
-    TResult? Function(Network value)? network,
-    TResult? Function(Unauthorized value)? unathorized,
-    TResult? Function(Unknown value)? unknow,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Network value)? network,
+    TResult? Function(_Unauthorized value)? unathorized,
+    TResult? Function(_Unknown value)? unknow,
   }) {
     return unknow?.call(this);
   }
@@ -525,10 +525,10 @@ class _$UnknownImpl implements Unknown {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotFound value)? notFound,
-    TResult Function(Network value)? network,
-    TResult Function(Unauthorized value)? unathorized,
-    TResult Function(Unknown value)? unknow,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Network value)? network,
+    TResult Function(_Unauthorized value)? unathorized,
+    TResult Function(_Unknown value)? unknow,
     required TResult orElse(),
   }) {
     if (unknow != null) {
@@ -538,6 +538,6 @@ class _$UnknownImpl implements Unknown {
   }
 }
 
-abstract class Unknown implements SignInFailure {
-  factory Unknown() = _$UnknownImpl;
+abstract class _Unknown implements SignInFailure {
+  factory _Unknown() = _$UnknownImpl;
 }

@@ -11,17 +11,17 @@ class AuthenticationAPI {
     if (failure.statusCode != null) {
       switch (failure.statusCode!) {
         case 401:
-          return Either.left(Unauthorized());
+          return Either.left(SignInFailure.unathorized());
         case 404:
-          return Either.left(NotFound());
+          return Either.left(SignInFailure.notFound());
         default:
-          return Either.left(Unknown());
+          return Either.left(SignInFailure.unknow());
       }
     }
     if (failure.exception is NetworkException) {
-      return Either.left(Network());
+      return Either.left(SignInFailure.network());
     }
-    return Either.left(Unknown());
+    return Either.left(SignInFailure.unknow());
   }
   // final _apiKey = 'sarasa';
 

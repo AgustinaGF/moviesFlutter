@@ -48,7 +48,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
                 await _sessionService.saveSessionId(sessionId);
                 final user = await _accountAPI.getAccount(sessionId);
                 if (user == null) {
-                  return Either.left(Unknown());
+                  return Either.left(SignInFailure.unknow());
                 }
 
                 return Either.right(user);
