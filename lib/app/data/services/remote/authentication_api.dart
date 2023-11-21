@@ -1,6 +1,6 @@
 import 'package:movies_flutter/app/data/http/http.dart';
 import 'package:movies_flutter/app/domain/either.dart';
-import 'package:movies_flutter/app/domain/repositories/enums.dart';
+import 'package:movies_flutter/app/domain/failures/sign_in_failure.dart';
 
 class AuthenticationAPI {
   AuthenticationAPI(this._http);
@@ -11,17 +11,17 @@ class AuthenticationAPI {
     if (failure.statusCode != null) {
       switch (failure.statusCode!) {
         case 401:
-          return Either.left(SignInFailure.unauthorized);
+          return Either.left(Unauthorized());
         case 404:
-          return Either.left(SignInFailure.notFound);
+          return Either.left(NotFound());
         default:
-          return Either.left(SignInFailure.unknown);
+          return Either.left(Unknown());
       }
     }
     if (failure.exception is NetworkException) {
-      return Either.left(SignInFailure.network);
+      return Either.left(Network());
     }
-    return Either.left(SignInFailure.unknown);
+    return Either.left(Unknown());
   }
   // final _apiKey = 'sarasa';
 

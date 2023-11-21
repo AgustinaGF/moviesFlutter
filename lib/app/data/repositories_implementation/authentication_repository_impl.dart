@@ -4,7 +4,8 @@ import 'package:movies_flutter/app/data/services/remote/authentication_api.dart'
 import 'package:movies_flutter/app/domain/either.dart';
 import 'package:movies_flutter/app/domain/models/user/user.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
-import 'package:movies_flutter/app/domain/repositories/enums.dart';
+
+import '../../domain/failures/sign_in_failure.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   AuthenticationRepositoryImpl(
@@ -47,7 +48,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
                 await _sessionService.saveSessionId(sessionId);
                 final user = await _accountAPI.getAccount(sessionId);
                 if (user == null) {
-                  return Either.left(SignInFailure.unknown);
+                  return Either.left(Unknown());
                 }
 
                 return Either.right(user);
