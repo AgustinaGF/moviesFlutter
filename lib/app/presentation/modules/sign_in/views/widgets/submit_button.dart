@@ -35,7 +35,7 @@ class SubmitButton extends StatelessWidget {
     }
 
     result.when(
-      (failure) {
+      left: (failure) {
         final message = failure.when(
             notFound: () => 'Not Found',
             network: () => 'Network error',
@@ -46,7 +46,7 @@ class SubmitButton extends StatelessWidget {
           SnackBar(content: Text(message)),
         );
       },
-      (user) {
+      right: (user) {
         final SessionController sessionController = context.read();
         sessionController.setUser(user);
         Navigator.pushReplacementNamed(context, Routes.home);

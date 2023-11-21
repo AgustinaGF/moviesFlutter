@@ -28,8 +28,8 @@ class SignInController extends StateNotifier<SignInState> {
     final result =
         await authenticationRepository.signIn(state.username, state.password);
     result.when(
-      (_) => state = state.copyWith(fetching: false),
-      (_) => null,
+      left: (_) => state = state.copyWith(fetching: false),
+      right: (_) => null,
     );
     return result;
   }

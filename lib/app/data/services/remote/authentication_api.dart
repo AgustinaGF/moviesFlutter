@@ -35,8 +35,8 @@ class AuthenticationAPI {
     );
 
     return result.when(
-      _handleFailure,
-      (requestToken) => Either.right(
+      left: _handleFailure,
+      right: (requestToken) => Either.right(
         requestToken,
       ),
     );
@@ -60,8 +60,8 @@ class AuthenticationAPI {
       },
     );
     return result.when(
-        _handleFailure,
-        (newRequestToken) => Either.right(
+        left: _handleFailure,
+        right: (newRequestToken) => Either.right(
               newRequestToken,
             ));
   }
@@ -80,6 +80,7 @@ class AuthenticationAPI {
         return json['session_id'] as String;
       },
     );
-    return result.when(_handleFailure, (sessionId) => Either.right(sessionId));
+    return result.when(
+        left: _handleFailure, right: (sessionId) => Either.right(sessionId));
   }
 }
