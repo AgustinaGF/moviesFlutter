@@ -11,7 +11,7 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignInController>(
       create: (_) => SignInController(
-        SignInState(),
+        SignInState(username: '', password: '', fetching: false),
         authenticationRepository: context.read<AuthenticationRepository>(),
       ),
       child: Scaffold(
