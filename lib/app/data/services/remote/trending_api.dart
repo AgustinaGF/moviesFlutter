@@ -1,6 +1,9 @@
+import 'package:movies_flutter/app/data/services/utils/handle_failure.dart';
 import 'package:movies_flutter/app/domain/enums.dart';
+import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
 import 'package:movies_flutter/app/domain/typedefs.dart';
 
+import '../../../domain/either/either.dart';
 import '../../../domain/models/media/media.dart';
 import '../../http/http.dart';
 
@@ -9,7 +12,9 @@ class TrendingAPI {
 
   TrendingAPI(this._http);
 
-  getMoviesAndSeries(TimeWindow timeWindow) async {
+  Future<Either<HttpRequestFailure, List<Media>>> getMoviesAndSeries(
+    TimeWindow timeWindow,
+  ) async {
     final result = await _http.request(
       '/trending/{media_type}/${timeWindow.name}',
       onSuccess: (json) {
@@ -24,6 +29,10 @@ class TrendingAPI {
             )
             .toList();
       },
+    );
+    return result.when(
+      left: handleHttpFailure,
+      right: (list) => Either.right(list),
     );
   }
 }

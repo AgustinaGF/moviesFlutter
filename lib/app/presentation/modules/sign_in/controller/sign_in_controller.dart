@@ -1,4 +1,4 @@
-import 'package:movies_flutter/app/domain/either.dart';
+import 'package:movies_flutter/app/domain/either/either.dart';
 import 'package:movies_flutter/app/domain/failures/sign_in/sign_in_failure.dart';
 import 'package:movies_flutter/app/domain/models/user/user.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';

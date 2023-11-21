@@ -1,5 +1,5 @@
 import 'package:movies_flutter/app/data/http/http.dart';
-import 'package:movies_flutter/app/domain/either.dart';
+import 'package:movies_flutter/app/domain/either/either.dart';
 import 'package:movies_flutter/app/domain/failures/sign_in/sign_in_failure.dart';
 
 class AuthenticationAPI {
@@ -11,6 +11,12 @@ class AuthenticationAPI {
     if (failure.statusCode != null) {
       switch (failure.statusCode!) {
         case 401:
+          if (failure.data is Map &&
+              (failure.data as Map)['status_code'] == 32) {
+            return Either.left(
+              SignInFailure.notVerified(),
+            );
+          }
           return Either.left(SignInFailure.unathorized());
         case 404:
           return Either.left(SignInFailure.notFound());
