@@ -62,7 +62,13 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return const Scaffold(
+        body: Center(
+      child: SizedBox(
+        width: 80,
+        height: 80,
+        child: CircularProgressIndicator(),
+      ),
+    ));
   }
 }

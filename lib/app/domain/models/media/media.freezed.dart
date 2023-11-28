@@ -21,9 +21,10 @@ Media _$MediaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Media {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
-  @JsonKey(name: 'original_title')
+  @JsonKey(readValue: readTitleValue)
+  String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
   String get originalTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
   String get posterPath => throw _privateConstructorUsedError;
@@ -46,9 +47,10 @@ abstract class $MediaCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
       String overview,
-      @JsonKey(name: 'original_title') String originalTitle,
+      @JsonKey(readValue: readTitleValue) String title,
+      @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
+      String originalTitle,
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'vote_average') String voteAverage,
@@ -69,8 +71,8 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? overview = null,
+    Object? title = null,
     Object? originalTitle = null,
     Object? posterPath = null,
     Object? backdropPath = null,
@@ -82,13 +84,13 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       originalTitle: null == originalTitle
           ? _value.originalTitle
@@ -123,9 +125,10 @@ abstract class _$$MediaImplCopyWith<$Res> implements $MediaCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
       String overview,
-      @JsonKey(name: 'original_title') String originalTitle,
+      @JsonKey(readValue: readTitleValue) String title,
+      @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
+      String originalTitle,
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'vote_average') String voteAverage,
@@ -144,8 +147,8 @@ class __$$MediaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? overview = null,
+    Object? title = null,
     Object? originalTitle = null,
     Object? posterPath = null,
     Object? backdropPath = null,
@@ -157,13 +160,13 @@ class __$$MediaImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       originalTitle: null == originalTitle
           ? _value.originalTitle
@@ -194,9 +197,10 @@ class __$$MediaImplCopyWithImpl<$Res>
 class _$MediaImpl implements _Media {
   _$MediaImpl(
       {required this.id,
-      required this.title,
       required this.overview,
-      @JsonKey(name: 'original_title') required this.originalTitle,
+      @JsonKey(readValue: readTitleValue) required this.title,
+      @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
+      required this.originalTitle,
       @JsonKey(name: 'poster_path') required this.posterPath,
       @JsonKey(name: 'backdrop_path') required this.backdropPath,
       @JsonKey(name: 'vote_average') required this.voteAverage,
@@ -208,11 +212,12 @@ class _$MediaImpl implements _Media {
   @override
   final int id;
   @override
-  final String title;
-  @override
   final String overview;
   @override
-  @JsonKey(name: 'original_title')
+  @JsonKey(readValue: readTitleValue)
+  final String title;
+  @override
+  @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
   final String originalTitle;
   @override
   @JsonKey(name: 'poster_path')
@@ -229,7 +234,7 @@ class _$MediaImpl implements _Media {
 
   @override
   String toString() {
-    return 'Media(id: $id, title: $title, overview: $overview, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, voteAverage: $voteAverage, type: $type)';
+    return 'Media(id: $id, overview: $overview, title: $title, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, voteAverage: $voteAverage, type: $type)';
   }
 
   @override
@@ -238,9 +243,9 @@ class _$MediaImpl implements _Media {
         (other.runtimeType == runtimeType &&
             other is _$MediaImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.originalTitle, originalTitle) ||
                 other.originalTitle == originalTitle) &&
             (identical(other.posterPath, posterPath) ||
@@ -254,7 +259,7 @@ class _$MediaImpl implements _Media {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, overview,
+  int get hashCode => Object.hash(runtimeType, id, overview, title,
       originalTitle, posterPath, backdropPath, voteAverage, type);
 
   @JsonKey(ignore: true)
@@ -274,9 +279,10 @@ class _$MediaImpl implements _Media {
 abstract class _Media implements Media {
   factory _Media(
       {required final int id,
-      required final String title,
       required final String overview,
-      @JsonKey(name: 'original_title') required final String originalTitle,
+      @JsonKey(readValue: readTitleValue) required final String title,
+      @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
+      required final String originalTitle,
       @JsonKey(name: 'poster_path') required final String posterPath,
       @JsonKey(name: 'backdrop_path') required final String backdropPath,
       @JsonKey(name: 'vote_average') required final String voteAverage,
@@ -287,11 +293,12 @@ abstract class _Media implements Media {
   @override
   int get id;
   @override
-  String get title;
-  @override
   String get overview;
   @override
-  @JsonKey(name: 'original_title')
+  @JsonKey(readValue: readTitleValue)
+  String get title;
+  @override
+  @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
   String get originalTitle;
   @override
   @JsonKey(name: 'poster_path')

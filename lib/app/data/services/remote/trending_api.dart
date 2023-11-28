@@ -16,10 +16,9 @@ class TrendingAPI {
     TimeWindow timeWindow,
   ) async {
     final result = await _http.request(
-      '/trending/{media_type}/${timeWindow.name}',
+      '/trending/all/${timeWindow.name}',
       onSuccess: (json) {
-        final list = json['results'] as List<Json>;
-
+        final list = List<Json>.from(json['results']);
         return list
             .where(
               (e) => e['media_type'] != 'person',

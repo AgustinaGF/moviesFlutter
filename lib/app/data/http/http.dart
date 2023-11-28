@@ -115,8 +115,7 @@ class Http {
       stackTrace = s;
       logs = {
         ...logs,
-        'exception': e.runtimeType,
-        'stackTrace': stackTrace.toString(),
+        'exception': e.runtimeType.toString(),
       };
       if (e is SocketException || e is ClientException) {
         logs = {

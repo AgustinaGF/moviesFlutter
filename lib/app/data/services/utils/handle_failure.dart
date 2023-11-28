@@ -3,6 +3,7 @@ import '../../../domain/failures/http_request_failure/http_request_failure.dart'
 import '../../http/http.dart';
 
 Either<HttpRequestFailure, R> handleHttpFailure<R>(HttpFailure httpFailure) {
+  print(httpFailure.exception);
   final failure = () {
     final statusCode = httpFailure.statusCode;
     switch (statusCode) {

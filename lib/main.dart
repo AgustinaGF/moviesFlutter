@@ -6,13 +6,16 @@ import 'package:movies_flutter/app/data/http/http.dart';
 import 'package:movies_flutter/app/data/repositories_implementation/account_repository_imp.dart';
 import 'package:movies_flutter/app/data/repositories_implementation/authentication_repository_impl.dart';
 import 'package:movies_flutter/app/data/repositories_implementation/connectivity_repository_imp.dart';
+import 'package:movies_flutter/app/data/repositories_implementation/trending_repositoty_impl.dart';
 import 'package:movies_flutter/app/data/services/local/session_service.dart';
 import 'package:movies_flutter/app/data/services/remote/acount_api.dart';
 import 'package:movies_flutter/app/data/services/remote/authentication_api.dart';
 import 'package:movies_flutter/app/data/services/remote/internet_checker.dart';
+import 'package:movies_flutter/app/data/services/remote/trending_api.dart';
 import 'package:movies_flutter/app/domain/repositories/account_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/authentication_repository.dart';
 import 'package:movies_flutter/app/domain/repositories/connectivity_repository.dart';
+import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
 import 'package:movies_flutter/app/my_app.dart';
 import 'package:movies_flutter/app/presentation/global/controllers/session_controller.dart';
 import 'package:provider/provider.dart';
@@ -46,6 +49,11 @@ void main() {
             AuthenticationAPI(http),
             sessionService,
             accountAPI,
+          ),
+        ),
+        Provider<TrendingRepository>(
+          create: (_) => TrendingRepositoryImpl(
+            TrendingAPI(http),
           ),
         ),
         ChangeNotifierProvider<SessionController>(
