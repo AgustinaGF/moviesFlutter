@@ -4,7 +4,7 @@ import 'package:movies_flutter/app/domain/enums.dart';
 import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
 import 'package:movies_flutter/app/domain/models/media/media.dart';
 import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
-import 'package:movies_flutter/app/presentation/global/utils/get_image_url.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_tile.dart';
 import 'package:provider/provider.dart';
 
 typedef EitherListMedia = Either<HttpRequestFailure, List<Media>>;
@@ -28,34 +28,61 @@ class _TrendingListState extends State<TrendingList> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: Center(
-        child: FutureBuilder<EitherListMedia>(
-            future: _future,
-            builder: (_, snapshot) {
-              if (!snapshot.hasData) {
-                return CircularProgressIndicator();
-              }
-              return snapshot.data!.when(
-                left: (failure) => Text(
-                  failure.toString(),
-                ),
-                right: (list) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) {
-                      final media = list[index];
-                      return Image.network(
-                        getImageUrl(media.posterPath),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 15),
+          child: Text(
+            'TRENDING',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        AspectRatio(
+          aspectRatio: 16 / 8,
+          child: LayoutBuilder(
+            builder: (_, contraints) {
+              final width = contraints.maxHeight * 0.65;
+              return Center(
+                child: FutureBuilder<EitherListMedia>(
+                    future: _future,
+                    builder: (_, snapshot) {
+                      if (!snapshot.hasData) {
+                        return CircularProgressIndicator();
+                      }
+                      return snapshot.data!.when(
+                        left: (failure) => Text(
+                          failure.toString(),
+                        ),
+                        right: (list) {
+                          return ListView.separated(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 15,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (_, index) {
+                              final media = list[index];
+                              return TrendingTile(
+                                media: media,
+                                width: width,
+                              );
+                            },
+                            itemCount: list.length,
+                            separatorBuilder: (_, __) => SizedBox(
+                              width: 10,
+                            ),
+                          );
+                        },
                       );
-                    },
-                    itemCount: list.length,
-                  );
-                },
+                    }),
               );
-            }),
-      ),
+            },
+          ),
+        ),
+      ],
     );
   }
 }
