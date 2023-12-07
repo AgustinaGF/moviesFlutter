@@ -17,13 +17,13 @@ class TrendingList extends StatefulWidget {
 }
 
 class _TrendingListState extends State<TrendingList> {
-  late final Future<EitherListMedia> _future;
-
+  TrendingRepository get _repository => context.read();
+  late Future<EitherListMedia> _future;
+  TimeWindow _timeWindow = TimeWindow.day;
   @override
   void initState() {
     super.initState();
-    final TrendingRepository repository = context.read();
-    _future = repository.getMoviesAndSeries(TimeWindow.day);
+    _future = _repository.getMoviesAndSeries(_timeWindow);
   }
 
   @override
@@ -33,11 +33,37 @@ class _TrendingListState extends State<TrendingList> {
       children: [
         Padding(
           padding: EdgeInsets.only(left: 15),
-          child: Text(
-            'TRENDING',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+          child: Row(
+            children: [
+              Text(
+                'TRENDING',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
+              DropdownButton<TimeWindow>(
+                value: TimeWindow.week,
+                items: const [
+                  DropdownMenuItem(
+                    child: Text('Last 24hs'),
+                    value: TimeWindow.day,
+                  ),
+                  DropdownMenuItem(
+                    child: Text('Last week'),
+                    value: TimeWindow.week,
+                  )
+                ],
+                onChanged: (timeWindow) {
+                  if (timeWindow != null) {
+                    setState(() {
+                      _timeWindow = timeWindow;
+                      _future = _repository.getMoviesAndSeries(_timeWindow);
+                    });
+                  }
+                },
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 10),
@@ -48,6 +74,7 @@ class _TrendingListState extends State<TrendingList> {
               final width = contraints.maxHeight * 0.65;
               return Center(
                 child: FutureBuilder<EitherListMedia>(
+                    key: ValueKey(_future),
                     future: _future,
                     builder: (_, snapshot) {
                       if (!snapshot.hasData) {
