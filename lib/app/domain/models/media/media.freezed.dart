@@ -33,7 +33,7 @@ mixin _$Media {
   @JsonKey(name: 'vote_average')
   double get voteAverage => throw _privateConstructorUsedError;
   @JsonKey(name: 'media_type')
-  String get type => throw _privateConstructorUsedError;
+  MediaType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ abstract class $MediaCopyWith<$Res> {
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'vote_average') double voteAverage,
-      @JsonKey(name: 'media_type') String type});
+      @JsonKey(name: 'media_type') MediaType type});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MediaType,
     ) as $Val);
   }
 }
@@ -132,7 +132,7 @@ abstract class _$$MediaImplCopyWith<$Res> implements $MediaCopyWith<$Res> {
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'vote_average') double voteAverage,
-      @JsonKey(name: 'media_type') String type});
+      @JsonKey(name: 'media_type') MediaType type});
 }
 
 /// @nodoc
@@ -187,7 +187,7 @@ class __$$MediaImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MediaType,
     ));
   }
 }
@@ -230,7 +230,7 @@ class _$MediaImpl implements _Media {
   final double voteAverage;
   @override
   @JsonKey(name: 'media_type')
-  final String type;
+  final MediaType type;
 
   @override
   String toString() {
@@ -278,15 +278,16 @@ class _$MediaImpl implements _Media {
 
 abstract class _Media implements Media {
   factory _Media(
-      {required final int id,
-      required final String overview,
-      @JsonKey(readValue: readTitleValue) required final String title,
-      @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
-      required final String originalTitle,
-      @JsonKey(name: 'poster_path') required final String posterPath,
-      @JsonKey(name: 'backdrop_path') required final String backdropPath,
-      @JsonKey(name: 'vote_average') required final double voteAverage,
-      @JsonKey(name: 'media_type') required final String type}) = _$MediaImpl;
+          {required final int id,
+          required final String overview,
+          @JsonKey(readValue: readTitleValue) required final String title,
+          @JsonKey(name: 'original_title', readValue: readOriginalTitleValue)
+          required final String originalTitle,
+          @JsonKey(name: 'poster_path') required final String posterPath,
+          @JsonKey(name: 'backdrop_path') required final String backdropPath,
+          @JsonKey(name: 'vote_average') required final double voteAverage,
+          @JsonKey(name: 'media_type') required final MediaType type}) =
+      _$MediaImpl;
 
   factory _Media.fromJson(Map<String, dynamic> json) = _$MediaImpl.fromJson;
 
@@ -311,7 +312,7 @@ abstract class _Media implements Media {
   double get voteAverage;
   @override
   @JsonKey(name: 'media_type')
-  String get type;
+  MediaType get type;
   @override
   @JsonKey(ignore: true)
   _$$MediaImplCopyWith<_$MediaImpl> get copyWith =>

@@ -15,7 +15,12 @@ class _HomeViewState extends State<HomeView> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [TrendingList()],
+          children: const [
+            SizedBox(
+              height: 10,
+            ),
+            TrendingList()
+          ],
         ),
       ),
     );
