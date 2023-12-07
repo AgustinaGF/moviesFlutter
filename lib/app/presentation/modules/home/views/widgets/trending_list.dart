@@ -5,6 +5,7 @@ import 'package:movies_flutter/app/domain/failures/http_request_failure/http_req
 import 'package:movies_flutter/app/domain/models/media/media.dart';
 import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_tile.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_time_window.dart';
 import 'package:provider/provider.dart';
 
 typedef EitherListMedia = Either<HttpRequestFailure, List<Media>>;
@@ -31,41 +32,14 @@ class _TrendingListState extends State<TrendingList> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: 15),
-          child: Row(
-            children: [
-              Text(
-                'TRENDING',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Spacer(),
-              DropdownButton<TimeWindow>(
-                value: TimeWindow.week,
-                items: const [
-                  DropdownMenuItem(
-                    child: Text('Last 24hs'),
-                    value: TimeWindow.day,
-                  ),
-                  DropdownMenuItem(
-                    child: Text('Last week'),
-                    value: TimeWindow.week,
-                  )
-                ],
-                onChanged: (timeWindow) {
-                  if (timeWindow != null) {
-                    setState(() {
-                      _timeWindow = timeWindow;
-                      _future = _repository.getMoviesAndSeries(_timeWindow);
-                    });
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
+        TrendingTimeWindow(
+            timeWindow: _timeWindow,
+            onChanged: (timeWindow) {
+              setState(() {
+                _timeWindow = timeWindow;
+                _future = _repository.getMoviesAndSeries(_timeWindow);
+              });
+            }),
         const SizedBox(height: 10),
         AspectRatio(
           aspectRatio: 16 / 8,
