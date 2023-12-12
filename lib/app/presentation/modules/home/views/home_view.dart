@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_list.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_performers.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,7 +20,11 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 10,
             ),
-            TrendingList()
+            TrendingList(),
+            SizedBox(
+              height: 20,
+            ),
+            TrendingPerformers()
           ],
         ),
       ),
