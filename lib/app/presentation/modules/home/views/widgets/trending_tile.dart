@@ -1,8 +1,6 @@
-import "package:extended_image/extended_image.dart";
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/app/domain/models/media/media.dart';
-
-import '../../../../global/utils/get_image_url.dart';
+import 'package:movies_flutter/app/presentation/global/utils/get_image_url.dart';
 
 class TrendingTile extends StatelessWidget {
   const TrendingTile({super.key, required this.media, required this.width});
@@ -18,17 +16,9 @@ class TrendingTile extends StatelessWidget {
         child: Stack(
           children: [
             Positioned.fill(
-              child: ExtendedImage.network(
+              child: Image.network(
                 getImageUrl(media.posterPath),
                 fit: BoxFit.cover,
-                loadStateChanged: (state) {
-                  if (state.extendedImageLoadState == LoadState.loading) {
-                    return Container(
-                      color: Colors.black12,
-                    );
-                  }
-                  return state.completedWidget;
-                },
               ),
             ),
             Positioned(

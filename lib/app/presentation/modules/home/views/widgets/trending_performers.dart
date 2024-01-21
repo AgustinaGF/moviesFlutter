@@ -1,4 +1,3 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/app/domain/either/either.dart';
 import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
@@ -52,7 +51,7 @@ class _TrendingPerformersState extends State<TrendingPerformers> {
                       child: Stack(
                         children: [
                           Positioned.fill(
-                            child: ExtendedImage.network(
+                            child: Image.network(
                                 getImageUrl(performer.profilePath)),
                           )
                         ],
