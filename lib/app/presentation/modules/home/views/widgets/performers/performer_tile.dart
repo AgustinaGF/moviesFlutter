@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/app/domain/models/performer/performer.dart';
 import 'package:movies_flutter/app/presentation/global/utils/get_image_url.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_tile.dart';
 
 class PerformerTile extends StatelessWidget {
   const PerformerTile({super.key, required this.performer});
@@ -25,7 +26,9 @@ class PerformerTile extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(15).copyWith(
+                      bottom: 40,
+                    ),
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -40,6 +43,24 @@ class PerformerTile extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        if (performer.knownFor.isNotEmpty)
+                          SizedBox(
+                            height: 120,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: performer.knownFor
+                                  .take(3)
+                                  .map((media) => TrendingTile(
+                                        media: media,
+                                        width: 120 * 0.7,
+                                        showData: false,
+                                      ))
+                                  .toList(),
+                            ),
+                          )
                       ],
                     )))
           ],
