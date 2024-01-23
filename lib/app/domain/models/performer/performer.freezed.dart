@@ -26,7 +26,7 @@ mixin _$Performer {
   String get originalName => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_path')
   String get profilePath => throw _privateConstructorUsedError;
-  @JsonKey(name: 'know_for', fromJson: getMediaList)
+  @JsonKey(name: 'known_for', fromJson: getMediaList)
   List<Media> get knownFor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +45,8 @@ abstract class $PerformerCopyWith<$Res> {
       String name,
       @JsonKey(name: 'original_name') String originalName,
       @JsonKey(name: 'profile_path') String profilePath,
-      @JsonKey(name: 'know_for', fromJson: getMediaList) List<Media> knownFor});
+      @JsonKey(name: 'known_for', fromJson: getMediaList)
+      List<Media> knownFor});
 }
 
 /// @nodoc
@@ -105,7 +106,8 @@ abstract class _$$PerformerImplCopyWith<$Res>
       String name,
       @JsonKey(name: 'original_name') String originalName,
       @JsonKey(name: 'profile_path') String profilePath,
-      @JsonKey(name: 'know_for', fromJson: getMediaList) List<Media> knownFor});
+      @JsonKey(name: 'known_for', fromJson: getMediaList)
+      List<Media> knownFor});
 }
 
 /// @nodoc
@@ -158,7 +160,7 @@ class _$PerformerImpl implements _Performer {
       required this.name,
       @JsonKey(name: 'original_name') required this.originalName,
       @JsonKey(name: 'profile_path') required this.profilePath,
-      @JsonKey(name: 'know_for', fromJson: getMediaList)
+      @JsonKey(name: 'known_for', fromJson: getMediaList)
       required final List<Media> knownFor})
       : _knownFor = knownFor;
 
@@ -177,7 +179,7 @@ class _$PerformerImpl implements _Performer {
   final String profilePath;
   final List<Media> _knownFor;
   @override
-  @JsonKey(name: 'know_for', fromJson: getMediaList)
+  @JsonKey(name: 'known_for', fromJson: getMediaList)
   List<Media> get knownFor {
     if (_knownFor is EqualUnmodifiableListView) return _knownFor;
     // ignore: implicit_dynamic_type
@@ -228,7 +230,7 @@ abstract class _Performer implements Performer {
       required final String name,
       @JsonKey(name: 'original_name') required final String originalName,
       @JsonKey(name: 'profile_path') required final String profilePath,
-      @JsonKey(name: 'know_for', fromJson: getMediaList)
+      @JsonKey(name: 'known_for', fromJson: getMediaList)
       required final List<Media> knownFor}) = _$PerformerImpl;
 
   factory _Performer.fromJson(Map<String, dynamic> json) =
@@ -245,7 +247,7 @@ abstract class _Performer implements Performer {
   @JsonKey(name: 'profile_path')
   String get profilePath;
   @override
-  @JsonKey(name: 'know_for', fromJson: getMediaList)
+  @JsonKey(name: 'known_for', fromJson: getMediaList)
   List<Media> get knownFor;
   @override
   @JsonKey(ignore: true)

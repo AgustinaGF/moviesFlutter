@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movies_flutter/app/domain/either/either.dart';
 import 'package:movies_flutter/app/domain/enums.dart';
 import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
 import 'package:movies_flutter/app/domain/models/media/media.dart';
 import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
-import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_tile.dart';
-import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_time_window.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_tile.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_time_window.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../../domain/either/either.dart';
 
 typedef EitherListMedia = Either<HttpRequestFailure, List<Media>>;
 

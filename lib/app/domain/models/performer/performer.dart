@@ -12,7 +12,7 @@ class Performer with _$Performer {
     @JsonKey(name: 'original_name') required String originalName,
     @JsonKey(name: 'profile_path') required String profilePath,
     @JsonKey(
-      name: 'know_for',
+      name: 'known_for',
       fromJson: getMediaList,
     )
     required List<Media> knownFor,

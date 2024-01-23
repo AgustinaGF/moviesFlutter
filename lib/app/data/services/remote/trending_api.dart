@@ -46,7 +46,7 @@ class TrendingAPI {
         return list
             .where(
               (e) =>
-                  e['know_for_department'] == 'Acting' &&
+                  e['known_for_department'] == 'Acting' &&
                   e['profile_path'] != null,
             )
             .map(
@@ -55,6 +55,7 @@ class TrendingAPI {
             .toList();
       },
     );
+
     return result.when(
       left: handleHttpFailure,
       right: (list) => Either.right(list),

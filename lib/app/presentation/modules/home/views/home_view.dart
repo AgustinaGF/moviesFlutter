@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_list.dart';
-import 'package:movies_flutter/app/presentation/modules/home/views/widgets/trending_performers.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_list.dart';
+import 'package:movies_flutter/app/presentation/modules/home/views/widgets/performers/trending_performers.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
