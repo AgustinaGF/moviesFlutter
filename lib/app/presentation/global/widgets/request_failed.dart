@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/generated/assets.gen.dart';
 
 class RequestFailed extends StatelessWidget {
   const RequestFailed({super.key, required this.onRetry, this.text});
@@ -14,11 +15,16 @@ class RequestFailed extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Expanded(
+            child: Assets.images.error404.image(),
+          ),
           Text(text ?? 'Request Failed'),
+          const SizedBox(height: 10),
           MaterialButton(
               onPressed: onRetry,
               color: Colors.blue,
-              child: const Text('Retry'))
+              child: const Text('Retry')),
+          const SizedBox(height: 10),
         ],
       ),
     );
