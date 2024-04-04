@@ -3,6 +3,7 @@ import 'package:movies_flutter/app/domain/either/either.dart';
 import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
 import 'package:movies_flutter/app/domain/models/performer/performer.dart';
 import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
+import 'package:movies_flutter/app/presentation/global/widgets/request_failed.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/performers/performer_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,7 @@ class _TrendingPerformersState extends State<TrendingPerformers> {
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<EitherListPerformer>(
+        key: ValueKey(_future),
         future: _future,
         builder: (_, snapshop) {
           if (!snapshop.hasData) {
@@ -45,7 +47,13 @@ class _TrendingPerformersState extends State<TrendingPerformers> {
             );
           }
           return snapshop.data!.when(
-            left: (_) => const Text('Error'),
+            left: (_) => RequestFailed(
+              onRetry: () {
+                setState(() {
+                  _future = context.read<TrendingRepository>().getPerformers();
+                });
+              },
+            ),
             right: (list) => Stack(
               alignment: Alignment.bottomCenter,
               children: [

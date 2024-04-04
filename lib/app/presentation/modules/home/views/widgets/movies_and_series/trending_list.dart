@@ -3,6 +3,7 @@ import 'package:movies_flutter/app/domain/enums.dart';
 import 'package:movies_flutter/app/domain/failures/http_request_failure/http_request_failure.dart';
 import 'package:movies_flutter/app/domain/models/media/media.dart';
 import 'package:movies_flutter/app/domain/repositories/trending_repository.dart';
+import 'package:movies_flutter/app/presentation/global/widgets/request_failed.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_tile.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_time_window.dart';
 import 'package:provider/provider.dart';
@@ -28,19 +29,22 @@ class _TrendingListState extends State<TrendingList> {
     _future = _repository.getMoviesAndSeries(_timeWindow);
   }
 
+  void _updateFuture(TimeWindow timeWindow) {
+    setState(() {
+      _timeWindow = timeWindow;
+      _future = _repository.getMoviesAndSeries(_timeWindow);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TrendingTimeWindow(
-            timeWindow: _timeWindow,
-            onChanged: (timeWindow) {
-              setState(() {
-                _timeWindow = timeWindow;
-                _future = _repository.getMoviesAndSeries(_timeWindow);
-              });
-            }),
+          timeWindow: _timeWindow,
+          onChanged: _updateFuture,
+        ),
         const SizedBox(height: 10),
         AspectRatio(
           aspectRatio: 16 / 8,
@@ -56,9 +60,9 @@ class _TrendingListState extends State<TrendingList> {
                         return CircularProgressIndicator();
                       }
                       return snapshot.data!.when(
-                        left: (failure) => Text(
-                          failure.toString(),
-                        ),
+                        left: (failure) => RequestFailed(onRetry: () {
+                          _updateFuture(_timeWindow);
+                        }),
                         right: (list) {
                           return ListView.separated(
                             padding: EdgeInsets.symmetric(
