@@ -14,19 +14,29 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: const [
-            SizedBox(
-              height: 10,
+          child: LayoutBuilder(
+        builder: (_, constraints) => RefreshIndicator(
+          onRefresh: () async {},
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: SizedBox(
+              height: constraints.maxHeight,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TrendingList(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TrendingPerformers()
+                ],
+              ),
             ),
-            TrendingList(),
-            SizedBox(
-              height: 20,
-            ),
-            TrendingPerformers()
-          ],
+          ),
         ),
-      ),
+      )),
     );
   }
 }
