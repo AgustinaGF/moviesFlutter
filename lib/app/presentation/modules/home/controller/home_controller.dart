@@ -12,14 +12,11 @@ class HomeController extends StateNotifier<HomeState> {
     );
     result.when(
       left: (_) {
-        state = state.copyWith(
-          loading: false,
-          moviesAndSeries: null,
-        );
+        state = HomeState.failed(state.timeWindow);
       },
       right: (list) {
-        state = state.copyWith(
-          loading: false,
+        state = HomeState.loaded(
+          timeWindow: state.timeWindow,
           moviesAndSeries: list,
         );
       },

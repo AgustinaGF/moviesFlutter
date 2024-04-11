@@ -16,9 +16,55 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  bool get loading => throw _privateConstructorUsedError;
-  List<Media>? get moviesAndSeries => throw _privateConstructorUsedError;
   TimeWindow get timeWindow => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TimeWindow timeWindow) loading,
+    required TResult Function(TimeWindow timeWindow) failed,
+    required TResult Function(
+            TimeWindow timeWindow, List<Media> moviesAndSeries)
+        loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TimeWindow timeWindow)? loading,
+    TResult? Function(TimeWindow timeWindow)? failed,
+    TResult? Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TimeWindow timeWindow)? loading,
+    TResult Function(TimeWindow timeWindow)? failed,
+    TResult Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeStateLoading value) loading,
+    required TResult Function(HomeStateFailed value) failed,
+    required TResult Function(HomeStateLoaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeStateLoading value)? loading,
+    TResult? Function(HomeStateFailed value)? failed,
+    TResult? Function(HomeStateLoaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeStateLoading value)? loading,
+    TResult Function(HomeStateFailed value)? failed,
+    TResult Function(HomeStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -30,8 +76,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call(
-      {bool loading, List<Media>? moviesAndSeries, TimeWindow timeWindow});
+  $Res call({TimeWindow timeWindow});
 }
 
 /// @nodoc
@@ -47,19 +92,9 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loading = null,
-    Object? moviesAndSeries = freezed,
     Object? timeWindow = null,
   }) {
     return _then(_value.copyWith(
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      moviesAndSeries: freezed == moviesAndSeries
-          ? _value.moviesAndSeries
-          : moviesAndSeries // ignore: cast_nullable_to_non_nullable
-              as List<Media>?,
       timeWindow: null == timeWindow
           ? _value.timeWindow
           : timeWindow // ignore: cast_nullable_to_non_nullable
@@ -69,42 +104,31 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res>
+abstract class _$$HomeStateLoadingImplCopyWith<$Res>
     implements $HomeStateCopyWith<$Res> {
-  factory _$$HomeStateImplCopyWith(
-          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
-      __$$HomeStateImplCopyWithImpl<$Res>;
+  factory _$$HomeStateLoadingImplCopyWith(_$HomeStateLoadingImpl value,
+          $Res Function(_$HomeStateLoadingImpl) then) =
+      __$$HomeStateLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool loading, List<Media>? moviesAndSeries, TimeWindow timeWindow});
+  $Res call({TimeWindow timeWindow});
 }
 
 /// @nodoc
-class __$$HomeStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
-    implements _$$HomeStateImplCopyWith<$Res> {
-  __$$HomeStateImplCopyWithImpl(
-      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+class __$$HomeStateLoadingImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateLoadingImpl>
+    implements _$$HomeStateLoadingImplCopyWith<$Res> {
+  __$$HomeStateLoadingImplCopyWithImpl(_$HomeStateLoadingImpl _value,
+      $Res Function(_$HomeStateLoadingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loading = null,
-    Object? moviesAndSeries = freezed,
     Object? timeWindow = null,
   }) {
-    return _then(_$HomeStateImpl(
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      moviesAndSeries: freezed == moviesAndSeries
-          ? _value._moviesAndSeries
-          : moviesAndSeries // ignore: cast_nullable_to_non_nullable
-              as List<Media>?,
-      timeWindow: null == timeWindow
+    return _then(_$HomeStateLoadingImpl(
+      null == timeWindow
           ? _value.timeWindow
           : timeWindow // ignore: cast_nullable_to_non_nullable
               as TimeWindow,
@@ -114,71 +138,435 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeStateImpl implements _HomeState {
-  _$HomeStateImpl(
-      {required this.loading,
-      final List<Media>? moviesAndSeries,
-      this.timeWindow = TimeWindow.day})
-      : _moviesAndSeries = moviesAndSeries;
+class _$HomeStateLoadingImpl implements HomeStateLoading {
+  _$HomeStateLoadingImpl(this.timeWindow);
 
   @override
-  final bool loading;
-  final List<Media>? _moviesAndSeries;
-  @override
-  List<Media>? get moviesAndSeries {
-    final value = _moviesAndSeries;
-    if (value == null) return null;
-    if (_moviesAndSeries is EqualUnmodifiableListView) return _moviesAndSeries;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey()
   final TimeWindow timeWindow;
 
   @override
   String toString() {
-    return 'HomeState(loading: $loading, moviesAndSeries: $moviesAndSeries, timeWindow: $timeWindow)';
+    return 'HomeState.loading(timeWindow: $timeWindow)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeStateImpl &&
-            (identical(other.loading, loading) || other.loading == loading) &&
-            const DeepCollectionEquality()
-                .equals(other._moviesAndSeries, _moviesAndSeries) &&
+            other is _$HomeStateLoadingImpl &&
             (identical(other.timeWindow, timeWindow) ||
                 other.timeWindow == timeWindow));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading,
-      const DeepCollectionEquality().hash(_moviesAndSeries), timeWindow);
+  int get hashCode => Object.hash(runtimeType, timeWindow);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
-      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+  _$$HomeStateLoadingImplCopyWith<_$HomeStateLoadingImpl> get copyWith =>
+      __$$HomeStateLoadingImplCopyWithImpl<_$HomeStateLoadingImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TimeWindow timeWindow) loading,
+    required TResult Function(TimeWindow timeWindow) failed,
+    required TResult Function(
+            TimeWindow timeWindow, List<Media> moviesAndSeries)
+        loaded,
+  }) {
+    return loading(timeWindow);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TimeWindow timeWindow)? loading,
+    TResult? Function(TimeWindow timeWindow)? failed,
+    TResult? Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+  }) {
+    return loading?.call(timeWindow);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TimeWindow timeWindow)? loading,
+    TResult Function(TimeWindow timeWindow)? failed,
+    TResult Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(timeWindow);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeStateLoading value) loading,
+    required TResult Function(HomeStateFailed value) failed,
+    required TResult Function(HomeStateLoaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeStateLoading value)? loading,
+    TResult? Function(HomeStateFailed value)? failed,
+    TResult? Function(HomeStateLoaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeStateLoading value)? loading,
+    TResult Function(HomeStateFailed value)? failed,
+    TResult Function(HomeStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _HomeState implements HomeState {
-  factory _HomeState(
-      {required final bool loading,
-      final List<Media>? moviesAndSeries,
-      final TimeWindow timeWindow}) = _$HomeStateImpl;
+abstract class HomeStateLoading implements HomeState {
+  factory HomeStateLoading(final TimeWindow timeWindow) =
+      _$HomeStateLoadingImpl;
 
-  @override
-  bool get loading;
-  @override
-  List<Media>? get moviesAndSeries;
   @override
   TimeWindow get timeWindow;
   @override
   @JsonKey(ignore: true)
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+  _$$HomeStateLoadingImplCopyWith<_$HomeStateLoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HomeStateFailedImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateFailedImplCopyWith(_$HomeStateFailedImpl value,
+          $Res Function(_$HomeStateFailedImpl) then) =
+      __$$HomeStateFailedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({TimeWindow timeWindow});
+}
+
+/// @nodoc
+class __$$HomeStateFailedImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateFailedImpl>
+    implements _$$HomeStateFailedImplCopyWith<$Res> {
+  __$$HomeStateFailedImplCopyWithImpl(
+      _$HomeStateFailedImpl _value, $Res Function(_$HomeStateFailedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? timeWindow = null,
+  }) {
+    return _then(_$HomeStateFailedImpl(
+      null == timeWindow
+          ? _value.timeWindow
+          : timeWindow // ignore: cast_nullable_to_non_nullable
+              as TimeWindow,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HomeStateFailedImpl implements HomeStateFailed {
+  _$HomeStateFailedImpl(this.timeWindow);
+
+  @override
+  final TimeWindow timeWindow;
+
+  @override
+  String toString() {
+    return 'HomeState.failed(timeWindow: $timeWindow)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeStateFailedImpl &&
+            (identical(other.timeWindow, timeWindow) ||
+                other.timeWindow == timeWindow));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, timeWindow);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeStateFailedImplCopyWith<_$HomeStateFailedImpl> get copyWith =>
+      __$$HomeStateFailedImplCopyWithImpl<_$HomeStateFailedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TimeWindow timeWindow) loading,
+    required TResult Function(TimeWindow timeWindow) failed,
+    required TResult Function(
+            TimeWindow timeWindow, List<Media> moviesAndSeries)
+        loaded,
+  }) {
+    return failed(timeWindow);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TimeWindow timeWindow)? loading,
+    TResult? Function(TimeWindow timeWindow)? failed,
+    TResult? Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+  }) {
+    return failed?.call(timeWindow);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TimeWindow timeWindow)? loading,
+    TResult Function(TimeWindow timeWindow)? failed,
+    TResult Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+    required TResult orElse(),
+  }) {
+    if (failed != null) {
+      return failed(timeWindow);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeStateLoading value) loading,
+    required TResult Function(HomeStateFailed value) failed,
+    required TResult Function(HomeStateLoaded value) loaded,
+  }) {
+    return failed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeStateLoading value)? loading,
+    TResult? Function(HomeStateFailed value)? failed,
+    TResult? Function(HomeStateLoaded value)? loaded,
+  }) {
+    return failed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeStateLoading value)? loading,
+    TResult Function(HomeStateFailed value)? failed,
+    TResult Function(HomeStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (failed != null) {
+      return failed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeStateFailed implements HomeState {
+  factory HomeStateFailed(final TimeWindow timeWindow) = _$HomeStateFailedImpl;
+
+  @override
+  TimeWindow get timeWindow;
+  @override
+  @JsonKey(ignore: true)
+  _$$HomeStateFailedImplCopyWith<_$HomeStateFailedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HomeStateLoadedImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateLoadedImplCopyWith(_$HomeStateLoadedImpl value,
+          $Res Function(_$HomeStateLoadedImpl) then) =
+      __$$HomeStateLoadedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({TimeWindow timeWindow, List<Media> moviesAndSeries});
+}
+
+/// @nodoc
+class __$$HomeStateLoadedImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateLoadedImpl>
+    implements _$$HomeStateLoadedImplCopyWith<$Res> {
+  __$$HomeStateLoadedImplCopyWithImpl(
+      _$HomeStateLoadedImpl _value, $Res Function(_$HomeStateLoadedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? timeWindow = null,
+    Object? moviesAndSeries = null,
+  }) {
+    return _then(_$HomeStateLoadedImpl(
+      timeWindow: null == timeWindow
+          ? _value.timeWindow
+          : timeWindow // ignore: cast_nullable_to_non_nullable
+              as TimeWindow,
+      moviesAndSeries: null == moviesAndSeries
+          ? _value._moviesAndSeries
+          : moviesAndSeries // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HomeStateLoadedImpl implements HomeStateLoaded {
+  _$HomeStateLoadedImpl(
+      {required this.timeWindow, required final List<Media> moviesAndSeries})
+      : _moviesAndSeries = moviesAndSeries;
+
+  @override
+  final TimeWindow timeWindow;
+  final List<Media> _moviesAndSeries;
+  @override
+  List<Media> get moviesAndSeries {
+    if (_moviesAndSeries is EqualUnmodifiableListView) return _moviesAndSeries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_moviesAndSeries);
+  }
+
+  @override
+  String toString() {
+    return 'HomeState.loaded(timeWindow: $timeWindow, moviesAndSeries: $moviesAndSeries)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeStateLoadedImpl &&
+            (identical(other.timeWindow, timeWindow) ||
+                other.timeWindow == timeWindow) &&
+            const DeepCollectionEquality()
+                .equals(other._moviesAndSeries, _moviesAndSeries));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, timeWindow,
+      const DeepCollectionEquality().hash(_moviesAndSeries));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeStateLoadedImplCopyWith<_$HomeStateLoadedImpl> get copyWith =>
+      __$$HomeStateLoadedImplCopyWithImpl<_$HomeStateLoadedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TimeWindow timeWindow) loading,
+    required TResult Function(TimeWindow timeWindow) failed,
+    required TResult Function(
+            TimeWindow timeWindow, List<Media> moviesAndSeries)
+        loaded,
+  }) {
+    return loaded(timeWindow, moviesAndSeries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TimeWindow timeWindow)? loading,
+    TResult? Function(TimeWindow timeWindow)? failed,
+    TResult? Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+  }) {
+    return loaded?.call(timeWindow, moviesAndSeries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TimeWindow timeWindow)? loading,
+    TResult Function(TimeWindow timeWindow)? failed,
+    TResult Function(TimeWindow timeWindow, List<Media> moviesAndSeries)?
+        loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(timeWindow, moviesAndSeries);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeStateLoading value) loading,
+    required TResult Function(HomeStateFailed value) failed,
+    required TResult Function(HomeStateLoaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeStateLoading value)? loading,
+    TResult? Function(HomeStateFailed value)? failed,
+    TResult? Function(HomeStateLoaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeStateLoading value)? loading,
+    TResult Function(HomeStateFailed value)? failed,
+    TResult Function(HomeStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeStateLoaded implements HomeState {
+  factory HomeStateLoaded(
+      {required final TimeWindow timeWindow,
+      required final List<Media> moviesAndSeries}) = _$HomeStateLoadedImpl;
+
+  @override
+  TimeWindow get timeWindow;
+  List<Media> get moviesAndSeries;
+  @override
+  @JsonKey(ignore: true)
+  _$$HomeStateLoadedImplCopyWith<_$HomeStateLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

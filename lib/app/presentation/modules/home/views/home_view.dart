@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/app/domain/enums.dart';
 import 'package:movies_flutter/app/presentation/modules/home/controller/home_controller.dart';
 import 'package:movies_flutter/app/presentation/modules/home/controller/state/home_state.dart';
 import 'package:movies_flutter/app/presentation/modules/home/views/widgets/movies_and_series/trending_list.dart';
@@ -18,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
     return ChangeNotifierProvider(
       create: (_) {
         final controller = HomeController(
-          HomeState(loading: true),
+          HomeState.loading(TimeWindow.day),
           trendingRepository: context.read(),
         );
         controller.init();
