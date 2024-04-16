@@ -11,12 +11,12 @@ class TrendingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController controller = context.watch();
-    final state = controller.state;
+    final moviesAndSeries = controller.state.moviesAndSeries;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TrendingTimeWindow(
-          timeWindow: state.timeWindow,
+          timeWindow: moviesAndSeries.timeWindow,
           onChanged: (timeWindow) {},
         ),
         const SizedBox(height: 10),
@@ -26,10 +26,14 @@ class TrendingList extends StatelessWidget {
             builder: (_, contraints) {
               final width = contraints.maxHeight * 0.65;
               return Center(
-                child: state.when(
+                child: moviesAndSeries.when(
                     loading: (_) => const CircularProgressIndicator(),
                     failed: (_) => RequestFailed(onRetry: () {}),
-                    loaded: (_, list) => ListView.separated(
+                    loaded: (
+                      _,
+                      list,
+                    ) =>
+                        ListView.separated(
                           padding: EdgeInsets.symmetric(
                             horizontal: 15,
                           ),
